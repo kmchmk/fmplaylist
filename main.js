@@ -40,10 +40,11 @@ function getDate() {
           selectedMonth = selectedMonth - 1;
         }
       }
-  }
+    }
 
-  // Send request
-  request.send();
+    // Send request
+    request.send();
+  }
 }
 
 function getPlaylist() {
@@ -262,4 +263,4 @@ $(document).ready(function () {
     $('#pl-search').val('');
   });
 
-});
+})
