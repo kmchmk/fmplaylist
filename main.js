@@ -132,7 +132,12 @@ function searchPlaylist() {
               cardContainer.appendChild(card);
           })
           $('.pl-sample-card2').not('#pl-sample-card2').show();
-          $('#pl-search-count').text($('.pl-sample-card2').length - 1);
+          if ($('.pl-sample-card2').length == 1){
+            $('#pl-search-count').text('No');
+          }
+          else {
+            $('#pl-search-count').text($('.pl-sample-card2').length - 1);
+          }
           $('#pl-search-keyword').text(searchKeyword);
       }
   }
