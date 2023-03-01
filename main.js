@@ -1,5 +1,7 @@
-var selectedMonth = 112;
-var selectedYear = 2023;
+const dateFirst = new Date();
+var selectedMonth = dateFirst.getMonth() + 1;
+console.log(selectedMonth);
+var selectedYear = dateFirst.getFullYear();var selectedMonth = 112;
 var apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=100&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
 var apiToken = 'patrmhhyrGhfX1lBu.565c299d1b736dc23b667dcf26d072185cf8236b255051109e767040c612ecce';
 
@@ -16,41 +18,7 @@ function youtube_parser(url) {
   }
 }
 
-function getDate() {
-  const dateFirst = new Date();
-  selectedMonth = dateFirst.getMonth() + 1;
-  selectedYear = dateFirst.getFullYear();
-
-  let request = new XMLHttpRequest();
-  request.open('GET', apiURL, true);
-  request.setRequestHeader('Authorization', "Bearer " + apiToken);
-  request.onload = function () {
-
-    let data = JSON.parse(this.response);
-    let arr = data.records;
-
-    // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute 
-    if (request.status >= 200 && request.status < 400) {
-      if (arr.length === 0) {
-        if (selectedMonth == 1) {
-          selectedMonth = 12;
-          selectedYear = selectedYear - 1;
-        }
-        else {
-          selectedMonth = selectedMonth - 1;
-        }
-      }
-    }
-
-    // Send request
-    request.send();
-  }
-  console.log(selectedMonth);
-  getPlaylist();
-}
-
 function getPlaylist() {
-
   let request = new XMLHttpRequest();
   request.open('GET', apiURL, true);
   request.setRequestHeader('Authorization', "Bearer " + apiToken);
@@ -96,6 +64,36 @@ function getPlaylist() {
 
   // Send request
   request.send();
+}
+
+function getDate() {
+  let request = new XMLHttpRequest();
+  request.open('GET', apiURL, true);
+  request.setRequestHeader('Authorization', "Bearer " + apiToken);
+  request.onload = function () {
+
+    let data = JSON.parse(this.response);
+    let arr = data.records;
+
+    // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute 
+    if (request.status >= 200 && request.status < 400) {
+      if (arr.length === 0) {
+        if (selectedMonth == 1) {
+          selectedMonth = 12;
+          selectedYear = selectedYear - 1;
+        }
+        else {
+          selectedMonth = selectedMonth - 1;
+          console.log(selectedMonth + 'after this function');
+        }
+      }
+    }
+
+    // Send request
+    request.send();
+  }
+  console.log(selectedMonth + 'before calling get playlist');
+  getPlaylist();
 }
 
 function searchPlaylist() {
