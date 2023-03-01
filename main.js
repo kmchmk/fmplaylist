@@ -102,6 +102,7 @@ function searchPlaylist() {
 
       let data = JSON.parse(this.response);
       let arr = data.records;
+      $('#load-more-wrapper2').hide();
       if (data.offset){
         offset2 = data.offset;
         $('#load-more-wrapper2').show();
