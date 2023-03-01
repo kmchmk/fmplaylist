@@ -151,6 +151,7 @@ $(document).ready(function () {
   $('#pl-sample-card2').hide();
 
   getDate();
+  console.log(selectedMonth);
   getPlaylist();
 
   $('.month-chips').on('click', function () {
