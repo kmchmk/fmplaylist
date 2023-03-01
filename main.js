@@ -41,7 +41,6 @@ function getPlaylistFirst() {
           selectedMonth = selectedMonth - 1;
         }
         getPlaylist();
-        console.log('march 2023 is still empty');
       }
       else {
         // Map a variable called cardContainer to the Webflow element called "Cards-Container"
