@@ -88,6 +88,8 @@ function getDate() {
     }
     apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
     getPlaylist();
+    $('.month-chips').removeClass('active');
+    $('#pl-month-' + selectedMonth).addClass('active');
   }
   // Send request
   request.send();
