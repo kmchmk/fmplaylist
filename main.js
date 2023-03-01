@@ -45,6 +45,8 @@ function getDate() {
     // Send request
     request.send();
   }
+  console.log(selectedMonth);
+  getPlaylist();
 }
 
 function getPlaylist() {
@@ -151,8 +153,6 @@ $(document).ready(function () {
   $('#pl-sample-card2').hide();
 
   getDate();
-  console.log(selectedMonth);
-  getPlaylist();
 
   $('.month-chips').on('click', function () {
     $('.month-chips').removeClass('active');
