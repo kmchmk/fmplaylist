@@ -276,6 +276,8 @@ $(document).ready(function () {
     $('.pl-section-default').show();
     $('#search-result-wrapper').hide();
     $('#pl-search').val('');
+    $('#search-trigger-mobile').removeClass('no-display');
+    $('#search-field-wrapper').addClass('no-display');
   });
 
   $('#pl-search').keypress(function (e) {
@@ -284,6 +286,8 @@ $(document).ready(function () {
         $('.pl-clear-search').hide();
         $('.pl-section-default').show();
         $('#search-result-wrapper').hide();
+        $('#search-trigger-mobile').removeClass('no-display');
+        $('#search-field-wrapper').addClass('no-display');
       }
       else {
         $('.pl-section-default').hide();
@@ -303,6 +307,8 @@ $(document).ready(function () {
       $('.pl-clear-search').hide();
       $('.pl-section-default').show();
       $('#search-result-wrapper').hide();
+      $('#search-field-wrapper').addClass('no-display');
+      $('#search-trigger-mobile').removeClass('no-display');
     }
   });
 
@@ -316,12 +322,20 @@ $(document).ready(function () {
     $('.pl-section-default').show();
     $('#search-result-wrapper').hide();
     $('#pl-search').val('');
+    $('#search-field-wrapper').addClass('no-display');
+    $('#search-trigger-mobile').removeClass('no-display');
   });
 
   //load more button for search
   $('#pl-load-more2').on('click', function () {
     apiURL2 = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=OR(FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsubmitterName%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsongTitle%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BartistName%7D)))&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist&offset=' + offset2;
     getMorePlaylist2(apiURL2);
+  });
+
+  //search trigger mobile
+  $('#search-trigger-mobile').on('click', function () {
+    $('#search-field-wrapper').removeClass('no-display');
+    $(this).addClass('no-display');
   });
 
   //draggable chips in small viewports
