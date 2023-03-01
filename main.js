@@ -3,8 +3,6 @@ var selectedYear = 2023;
 var apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=100&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
 var apiToken = 'patrmhhyrGhfX1lBu.565c299d1b736dc23b667dcf26d072185cf8236b255051109e767040c612ecce';
 
-console.log('edittest')
-
 //for search
 var searchKeyword = '';
 var apiURL2 = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=OR(FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsubmitterName%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsongTitle%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BartistName%7D)))&maxRecords=100&pageSize=100&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
@@ -18,7 +16,7 @@ function youtube_parser(url) {
   }
 }
 
-function getPlaylistFirst() {
+function getDate() {
   const dateFirst = new Date();
   selectedMonth = dateFirst.getMonth() + 1;
   selectedYear = dateFirst.getFullYear();
@@ -33,7 +31,6 @@ function getPlaylistFirst() {
 
     // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute 
     if (request.status >= 200 && request.status < 400) {
-      $('#pl-empty-state').hide();
       if (arr.length === 0) {
         if (selectedMonth == 1) {
           selectedMonth = 12;
@@ -42,35 +39,7 @@ function getPlaylistFirst() {
         else {
           selectedMonth = selectedMonth - 1;
         }
-        getPlaylist();
       }
-      else {
-        // Map a variable called cardContainer to the Webflow element called "Cards-Container"
-        const cardContainer = document.getElementById("playlist-wrapper");
-        arr.forEach((items, i) => {
-          // For each data, create a div called card and style with the "Sample Card" class
-          const style = document.getElementById('pl-sample-card');
-          // Copy the card and it's style
-          const card = style.cloneNode(true);
-
-          card.setAttribute('id', '');
-          let video = $(card).find(".video");
-
-          let videoID = youtube_parser(items.fields.youtubeLink);
-
-          $('<iframe src="placeholder" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')
-            .attr("src", "https://www.youtube.com/embed/" + videoID)
-            .appendTo(video);
-          $(card).find('.pl-name').text(items.fields.submitterName);
-          $(card).find('.pl-desc').text(items.fields.songDescription);
-          $(card).find('.pl-month').text(items.fields.Month);
-          var formattedDate = items.fields.submittedDate.slice(0, 4);
-          $(card).find('.pl-year').text(formattedDate);
-          cardContainer.appendChild(card);
-        })
-      }
-      $('.pl-sample-card').not('#pl-sample-card').show();
-    }
   }
 
   // Send request
@@ -92,7 +61,6 @@ function getPlaylist() {
       $('#pl-empty-state').hide();
       if (arr.length === 0) {
         $('#pl-empty-state').show();
-        console.log('get playlist function is empty');
       }
       else {
         // Map a variable called cardContainer to the Webflow element called "Cards-Container"
@@ -181,9 +149,8 @@ $(document).ready(function () {
   $('#search-result-wrapper').hide();
   $('#pl-sample-card2').hide();
 
-  getPlaylistFirst();
-
-
+  getDate();
+  getPlaylist();
 
   $('.month-chips').on('click', function () {
     $('.month-chips').removeClass('active');
@@ -294,6 +261,5 @@ $(document).ready(function () {
     $('#search-result-wrapper').hide();
     $('#pl-search').val('');
   });
-  console.log('test');
 
 });
