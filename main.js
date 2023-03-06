@@ -327,7 +327,8 @@ $(document).ready(function () {
     $('#search-field-wrapper').addClass('no-display');
     $('#search-trigger-mobile').removeClass('no-display');
     selectedMonth = dateFirst.getMonth() + 1;
-    var selectedYear = dateFirst.getFullYear();
+    selectedYear = dateFirst.getFullYear();
+    apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
     getDate();
   });
 
