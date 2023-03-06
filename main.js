@@ -326,6 +326,7 @@ $(document).ready(function () {
     $('#pl-search').val('');
     $('#search-field-wrapper').addClass('no-display');
     $('#search-trigger-mobile').removeClass('no-display');
+    getDate();
   });
 
   //load more button for search
