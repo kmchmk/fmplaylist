@@ -326,6 +326,8 @@ $(document).ready(function () {
     $('#pl-search').val('');
     $('#search-field-wrapper').addClass('no-display');
     $('#search-trigger-mobile').removeClass('no-display');
+    selectedMonth = dateFirst.getMonth() + 1;
+    var selectedYear = dateFirst.getFullYear();
     getDate();
   });
 
