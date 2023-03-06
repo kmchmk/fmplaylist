@@ -210,6 +210,7 @@ $(document).ready(function () {
   $('#load-more-wrapper2').hide();
 
   getDate();
+
   $('.month-chips').on('click', function () {
     $('.month-chips').removeClass('active');
     $(this).addClass('active');
@@ -326,6 +327,7 @@ $(document).ready(function () {
     $('#pl-search').val('');
     $('#search-field-wrapper').addClass('no-display');
     $('#search-trigger-mobile').removeClass('no-display');
+    $('#playlist-wrapper').children().not('#pl-sample-card').remove();
     selectedMonth = dateFirst.getMonth() + 1;
     selectedYear = dateFirst.getFullYear();
     apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
