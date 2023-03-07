@@ -126,43 +126,54 @@ function searchPlaylist() {
   let request = new XMLHttpRequest();
   request.open('GET', apiURL2, true);
   request.setRequestHeader('Authorization', "Bearer " + apiToken);
-  request.onload = function () {
+  request.onreadystatechange = function () {
+    if (this.readyState === 4) {
+      let data = JSON.parse(this.response);
+      let arr = data.records;
+      $('#load-more-wrapper2').hide();
+      if (data.offset) {
+        offset2 = data.offset;
+        $('#load-more-wrapper2').show();
+      }
+      $('.pl-loading-spinner').removeClass('no-display-2').addClass('no-display-2');
+      $('.pl-section-default').removeClass('no-display-2');
+      $('#pl-empty-state').hide();
+      if (arr.length === 0) {
+        $('#pl-empty-state').show();
+      }
+      else {
+        // Map a variable called cardContainer to the Webflow element called "Cards-Container"
+        const cardContainer = document.getElementById("playlist-wrapper2");
+        arr.forEach((items, i) => {
+          // For each data, create a div called card and style with the "Sample Card" class
+          const style = document.getElementById('pl-sample-card2');
+          // Copy the card and it's style
+          const card = style.cloneNode(true);
 
-    let data = JSON.parse(this.response);
-    let arr = data.records;
-    $('#load-more-wrapper2').hide();
-    if (data.offset) {
-      offset2 = data.offset;
-      $('#load-more-wrapper2').show();
+          card.setAttribute('id', '');
+          let video = $(card).find(".video");
+
+          let videoID = youtube_parser(items.fields.youtubeLink);
+
+          $('<iframe src="placeholder" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')
+            .attr("src", "https://www.youtube.com/embed/" + videoID)
+            .appendTo(video);
+          $(card).find('.pl-name').text(items.fields.submitterName);
+          $(card).find('.pl-desc').text(items.fields.songDescription);
+          $(card).find('.pl-month').text(items.fields.Month);
+          var formattedDate = items.fields.submittedDate.slice(0, 4);
+          $(card).find('.pl-year').text(formattedDate);
+          cardContainer.appendChild(card);
+        })
+        $('.pl-sample-card2').not('#pl-sample-card2').show();
+      }
     }
-    // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute 
-    if (request.status >= 200 && request.status < 400) {
-      // Map a variable called cardContainer to the Webflow element called "Cards-Container"
-      const cardContainer = document.getElementById("playlist-wrapper2");
-      arr.forEach((items, i) => {
-        // For each data, create a div called card and style with the "Sample Card" class
-        const style = document.getElementById('pl-sample-card2');
-        // Copy the card and it's style
-        const card = style.cloneNode(true);
-
-        card.setAttribute('id', '');
-        let video = $(card).find(".video");
-
-        let videoID = youtube_parser(items.fields.youtubeLink);
-
-        $('<iframe src="placeholder" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')
-          .attr("src", "https://www.youtube.com/embed/" + videoID)
-          .appendTo(video);
-        $(card).find('.pl-name').text(items.fields.submitterName);
-        $(card).find('.pl-desc').text(items.fields.songDescription);
-        $(card).find('.pl-month').text(items.fields.Month);
-        var formattedDate = items.fields.submittedDate.slice(0, 4);
-        $(card).find('.pl-year').text(formattedDate);
-        cardContainer.appendChild(card);
-      })
-      $('.pl-sample-card2').not('#pl-sample-card2').show();
+    else {
+      $('.pl-loading-spinner').removeClass('no-display-2');
     }
   }
+
+
 
   // Send request
   request.send();
