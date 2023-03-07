@@ -128,6 +128,7 @@ function searchPlaylist() {
   request.setRequestHeader('Authorization', "Bearer " + apiToken);
   request.onreadystatechange = function () {
     if (this.readyState === 4) {
+      $('#search-result-wrapper').show();
       let data = JSON.parse(this.response);
       let arr = data.records;
       $('#load-more-wrapper2').hide();
@@ -336,7 +337,7 @@ $(document).ready(function () {
       else {
         $('.pl-loading-spinner').removeClass('no-display-2');
         $('.pl-section-default').hide();
-        $('#search-result-wrapper').show();
+        $('#search-result-wrapper').hide();
         $('#playlist-wrapper2').children().not('#pl-sample-card2').remove();
         searchKeyword = $(this).val().toLowerCase();
         apiURL3 = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=OR(FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsubmitterName%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsongTitle%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BartistName%7D)))&maxRecords=100&pageSize=100&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
