@@ -231,6 +231,7 @@ $(document).ready(function () {
   getDate();
 
   $('.month-chips').on('click', function () {
+    $('#pl-empty-state').hide();
     $('.pl-loading-spinner').removeClass('no-display-2');
     $('.month-chips').removeClass('active');
     $(this).addClass('active');
@@ -278,6 +279,8 @@ $(document).ready(function () {
   });
 
   $("#year-dropdown").change(function () {
+    $('#pl-empty-state').hide();
+    $('.pl-loading-spinner').removeClass('no-display-2');
     $('#playlist-wrapper').children().not('#pl-sample-card').remove();
 
     if ($(this).val() == '2021') {
