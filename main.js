@@ -231,6 +231,7 @@ $(document).ready(function () {
   getDate();
 
   $('.month-chips').on('click', function () {
+    $('.pl-loading-spinner').removeClass('no-display-2');
     $('.month-chips').removeClass('active');
     $(this).addClass('active');
 
