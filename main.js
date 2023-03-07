@@ -95,6 +95,31 @@ function getDate() {
   request.send();
 }
 
+function getPlaylistRecords() {
+
+  let request = new XMLHttpRequest();
+  request.open('GET', apiURL2, true);
+  request.setRequestHeader('Authorization', "Bearer " + apiToken);
+  request.onload = function () {
+
+    let data = JSON.parse(this.response);
+    let arr = data.records;
+    // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute 
+    if (request.status >= 200 && request.status < 400) {
+      if (arr.length === 0) {
+        $('#pl-search-count').text('No');
+      }
+      else {
+        $('#pl-search-count').text(arr.length);
+      }
+      $('#pl-search-keyword').text(searchKeyword);
+    }
+  }
+
+  // Send request
+  request.send();
+}
+
 function searchPlaylist() {
 
   let request = new XMLHttpRequest();
@@ -134,14 +159,6 @@ function searchPlaylist() {
         $(card).find('.pl-year').text(formattedDate);
         cardContainer.appendChild(card);
       })
-      $('.pl-sample-card2').not('#pl-sample-card2').show();
-      if ($('.pl-sample-card2').length == 1) {
-        $('#pl-search-count').text('No');
-      }
-      else {
-        $('#pl-search-count').text($('.pl-sample-card2').length - 1);
-      }
-      $('#pl-search-keyword').text(searchKeyword);
     }
   }
 
@@ -304,6 +321,7 @@ $(document).ready(function () {
         searchKeyword = $(this).val().toLowerCase();
         apiURL2 = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=OR(FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsubmitterName%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsongTitle%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BartistName%7D)))&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
         searchPlaylist();
+        getPlaylistRecords();
         $(this).blur();
         $('.pl-clear-search').show();
         $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
