@@ -320,6 +320,7 @@ $(document).ready(function () {
       }
       //search has value
       else {
+        $('.pl-loading-spinner').removeClass('no-display-2');
         $('.pl-section-default').hide();
         $('#search-result-wrapper').show();
         $('#playlist-wrapper2').children().not('#pl-sample-card2').remove();
@@ -354,6 +355,7 @@ $(document).ready(function () {
 
   //go back to home view
   $('#pl-fm-logo').on('click', function () {
+    $('.pl-loading-spinner').removeClass('no-display-2');
     $('.pl-clear-search').hide();
     $('.pl-section-default').show();
     $('#search-result-wrapper').hide();
@@ -394,6 +396,7 @@ $(document).ready(function () {
 
   //back arrow 2 to go back to home
   $('.back-arrow-pl-2').on('click', function () {
+    $('.pl-loading-spinner').removeClass('no-display-2');
     $('#search-field-wrapper').toggleClass('no-display');
     $('#search-trigger-mobile').toggleClass('no-display');
     $('#pl-fm-logo').toggleClass('no-display');
