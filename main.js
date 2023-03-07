@@ -27,8 +27,8 @@ function getPlaylist() {
     if (this.readyState === 4) {
       let data = JSON.parse(this.response);
       let arr = data.records;
-      $('.pl-loading-spinner').removeClass('no-display').addClass('no-display');
-      $('.pl-section-default').removeClass('no-display');
+      $('.pl-loading-spinner').removeClass('no-display-2').addClass('no-display-2');
+      $('.pl-section-default').removeClass('no-display-2');
       $('#pl-empty-state').hide();
       if (arr.length === 0) {
         $('#pl-empty-state').show();
@@ -61,7 +61,7 @@ function getPlaylist() {
       $('.pl-sample-card').not('#pl-sample-card').show();
     }
     else {
-      $('.pl-loading-spinner').removeClass('no-display');
+      $('.pl-loading-spinner').removeClass('no-display-2');
     }
   }
   // Send request
