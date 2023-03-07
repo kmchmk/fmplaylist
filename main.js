@@ -301,6 +301,8 @@ $(document).ready(function () {
         searchPlaylist();
         $(this).blur();
         $('.pl-clear-search').show();
+        $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
+        $('.back-arrow-pl-2').removeClass('no-display');
       }
     }
   });
@@ -342,8 +344,35 @@ $(document).ready(function () {
 
   //search trigger mobile
   $('#search-trigger-mobile').on('click', function () {
-    $('#search-field-wrapper').removeClass('no-display');
-    $(this).addClass('no-display');
+    $('#search-field-wrapper').toggleClass('no-display');
+    $(this).toggleClass('no-display');
+    $('#pl-fm-logo').toggleClass('no-display');
+    $('.back-arrow-pl').toggleClass('no-display');
+  });
+
+  //back arrow 1 to CANCEL the search bar
+  $('.back-arrow-pl').on('click', function () {
+    $('#search-field-wrapper').toggleClass('no-display');
+    $('#search-trigger-mobile').toggleClass('no-display');
+    $('#pl-fm-logo').toggleClass('no-display');
+    $('.back-arrow-pl').toggleClass('no-display');
+  });
+
+  //back arrow 2 to go back to home
+  $('.back-arrow-pl-2').on('click', function () {
+    $('#search-field-wrapper').toggleClass('no-display');
+    $('#search-trigger-mobile').toggleClass('no-display');
+    $('#pl-fm-logo').toggleClass('no-display');
+    $('.back-arrow-pl-2').toggleClass('no-display');
+    $('.pl-clear-search').hide();
+    $('.pl-section-default').show();
+    $('#search-result-wrapper').hide();
+    $('#pl-search').val('');
+    $('#playlist-wrapper').children().not('#pl-sample-card').remove();
+    selectedMonth = dateFirst.getMonth() + 1;
+    selectedYear = dateFirst.getFullYear();
+    apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
+    getDate();
   });
 
   //draggable chips in small viewports
