@@ -23,13 +23,12 @@ function getPlaylist() {
   let request = new XMLHttpRequest();
   request.open('GET', apiURL, true);
   request.setRequestHeader('Authorization', "Bearer " + apiToken);
-  request.onload = function () {
-
-    let data = JSON.parse(this.response);
-    let arr = data.records;
-
-    // Status 200 = Success. Status 400 = Problem.  This says if it's successful and no problems, then execute 
-    if (request.status >= 200 && request.status < 400) {
+  request.onreadystatechange = function () {
+    if (this.readyState === 4) {
+      let data = JSON.parse(this.response);
+      let arr = data.records;
+      $('.pl-loading-spinner').removeClass('no-display').addClass('no-display');
+      $('.pl-section-default').removeClass('no-display');
       $('#pl-empty-state').hide();
       if (arr.length === 0) {
         $('#pl-empty-state').show();
@@ -61,8 +60,10 @@ function getPlaylist() {
       }
       $('.pl-sample-card').not('#pl-sample-card').show();
     }
+    else {
+      $('.pl-loading-spinner').removeClass('no-display');
+    }
   }
-
   // Send request
   request.send();
 }
