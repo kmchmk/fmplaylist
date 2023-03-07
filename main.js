@@ -99,7 +99,7 @@ function getDate() {
 function getPlaylistRecords() {
 
   let request = new XMLHttpRequest();
-  request.open('GET', apiURL2, true);
+  request.open('GET', apiURL3, true);
   request.setRequestHeader('Authorization', "Bearer " + apiToken);
   request.onload = function () {
 
