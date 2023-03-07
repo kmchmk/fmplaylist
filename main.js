@@ -281,6 +281,8 @@ $(document).ready(function () {
     $('#pl-search').val('');
     $('#search-trigger-mobile').removeClass('no-display');
     $('#search-field-wrapper').addClass('no-display');
+    $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
+    $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
   });
 
   $('#pl-search').keypress(function (e) {
@@ -291,6 +293,8 @@ $(document).ready(function () {
         $('#search-result-wrapper').hide();
         $('#search-trigger-mobile').removeClass('no-display');
         $('#search-field-wrapper').addClass('no-display');
+        $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
+        $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
       }
       else {
         $('.pl-section-default').hide();
@@ -314,6 +318,8 @@ $(document).ready(function () {
       $('#search-result-wrapper').hide();
       $('#search-field-wrapper').addClass('no-display');
       $('#search-trigger-mobile').removeClass('no-display');
+      $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
+      $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
     }
   });
 
@@ -358,6 +364,7 @@ $(document).ready(function () {
     $('#search-trigger-mobile').toggleClass('no-display');
     $('#pl-fm-logo').toggleClass('no-display');
     $('.back-arrow-pl').toggleClass('no-display');
+    $('#pl-search').val('');
   });
 
   //back arrow 2 to go back to home
