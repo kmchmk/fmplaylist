@@ -283,6 +283,7 @@ $(document).ready(function () {
     $('#search-field-wrapper').addClass('no-display');
     $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
     $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
+    $('#pl-fm-logo').removeClass('no-display');
   });
 
   $('#pl-search').keypress(function (e) {
