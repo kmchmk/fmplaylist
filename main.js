@@ -328,6 +328,8 @@ $(document).ready(function () {
     $('#search-result-wrapper').hide();
     $('#pl-search').val('');
     $('#search-field-wrapper').addClass('no-display');
+    $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
+    $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
     $('#search-trigger-mobile').removeClass('no-display');
     $('#playlist-wrapper').children().not('#pl-sample-card').remove();
     selectedMonth = dateFirst.getMonth() + 1;
