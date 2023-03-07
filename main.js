@@ -8,6 +8,7 @@ var apiToken = 'patrmhhyrGhfX1lBu.565c299d1b736dc23b667dcf26d072185cf8236b255051
 var searchKeyword = '';
 var offset2 = '';
 var apiURL2 = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=OR(FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsubmitterName%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsongTitle%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BartistName%7D)))&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
+var apiURL3 = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=OR(FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsubmitterName%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsongTitle%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BartistName%7D)))&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
 function youtube_parser(url) {
   var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
   var match = url.match(regExp);
@@ -305,6 +306,7 @@ $(document).ready(function () {
 
   $('#pl-search').keypress(function (e) {
     if (e.which == 13) {
+      //search is empty
       if (!$(this).val()) {
         $('.pl-clear-search').hide();
         $('.pl-section-default').show();
@@ -314,14 +316,16 @@ $(document).ready(function () {
         $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
         $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
       }
+      //search has value
       else {
         $('.pl-section-default').hide();
         $('#search-result-wrapper').show();
         $('#playlist-wrapper2').children().not('#pl-sample-card2').remove();
         searchKeyword = $(this).val().toLowerCase();
+        apiURL3 = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=OR(FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsubmitterName%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsongTitle%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BartistName%7D)))&maxRecords=100&pageSize=100&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
+        getPlaylistRecords();
         apiURL2 = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=OR(FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsubmitterName%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BsongTitle%7D))%2C+FIND(%22' + searchKeyword + '%22%2C+LOWER(%7BartistName%7D)))&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
         searchPlaylist();
-        getPlaylistRecords();
         $(this).blur();
         $('.pl-clear-search').show();
         $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
