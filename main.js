@@ -122,7 +122,6 @@ function getPlaylistRecords() {
 }
 
 function searchPlaylist() {
-
   let request = new XMLHttpRequest();
   request.open('GET', apiURL2, true);
   request.setRequestHeader('Authorization', "Bearer " + apiToken);
@@ -160,6 +159,7 @@ function searchPlaylist() {
         $(card).find('.pl-year').text(formattedDate);
         cardContainer.appendChild(card);
       })
+      $('.pl-sample-card2').not('#pl-sample-card2').show();
     }
   }
 
