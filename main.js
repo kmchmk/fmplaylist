@@ -60,7 +60,7 @@ function getPlaylist() {
       }
       $('.pl-sample-card').not('#pl-sample-card').show();
       if (($('.pl-sample-card').length - 1) % 3 == 2) {
-        $('.pl-sample-card').last().clone().hide().appendTo("#playlist-wrapper");
+        $('.pl-sample-card').last().clone().height(0).appendTo("#playlist-wrapper");
       }
     }
     else {
@@ -170,7 +170,7 @@ function searchPlaylist() {
         })
         $('.pl-sample-card2').not('#pl-sample-card2').show();
         if (($('.pl-sample-card2').length - 1) % 3 == 2) {
-          $('.pl-sample-card2').last().clone().hide().appendTo("#playlist-wrapper2");
+          $('.pl-sample-card2').last().clone().height(0).appendTo("#playlist-wrapper2");
         }
       }
     }
@@ -226,7 +226,7 @@ function getMorePlaylist2(moreURL) {
       })
       $('.pl-sample-card2').not('#pl-sample-card2').show();
       if (($('.pl-sample-card2').length - 1) % 3 == 2) {
-        $('.pl-sample-card2').last().clone().hide().appendTo("#playlist-wrapper2");
+        $('.pl-sample-card2').last().clone().height(0).appendTo("#playlist-wrapper2");
       }
     }
   }
