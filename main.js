@@ -140,9 +140,8 @@ function searchPlaylist() {
       }
       $('.pl-loading-spinner').removeClass('no-display-2').addClass('no-display-2');
       $('.pl-section-default').removeClass('no-display-2');
-      $('#pl-empty-state').hide();
       if (arr.length === 0) {
-        $('#pl-empty-state').show();
+        
       }
       else {
         // Map a variable called cardContainer to the Webflow element called "Cards-Container"
