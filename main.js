@@ -376,6 +376,7 @@ $(document).ready(function () {
 
   //go back to home view
   $('#pl-fm-logo').on('click', function () {
+    $('#pl-empty-state').hide();
     $('.pl-loading-spinner').removeClass('no-display-2');
     $('.pl-clear-search').hide();
     $('.pl-section-default').show();
@@ -417,6 +418,7 @@ $(document).ready(function () {
 
   //back arrow 2 to go back to home
   $('.back-arrow-pl-2').on('click', function () {
+    $('#pl-empty-state').hide();
     $('.pl-loading-spinner').removeClass('no-display-2');
     $('#search-field-wrapper').toggleClass('no-display');
     $('#search-trigger-mobile').toggleClass('no-display');
