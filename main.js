@@ -332,6 +332,8 @@ $(document).ready(function () {
       //search is empty
       if (!$(this).val()) {
         if ($(window).width() < 479) {
+          $('.pl-section-default').show();
+          $('#search-result-wrapper').hide();
           $('#search-field-wrapper').toggleClass('no-display');
           $('#search-trigger-mobile').toggleClass('no-display');
           $('#pl-fm-logo').toggleClass('no-display');
@@ -370,6 +372,8 @@ $(document).ready(function () {
   $('#pl-search').focusout(function () {
     if (!$(this).val()) {
       if ($(window).width() < 479) {
+        $('.pl-section-default').show();
+        $('#search-result-wrapper').hide();
         $('#search-field-wrapper').toggleClass('no-display');
         $('#search-trigger-mobile').toggleClass('no-display');
         $('#pl-fm-logo').toggleClass('no-display');
