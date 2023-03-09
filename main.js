@@ -59,7 +59,7 @@ function getPlaylist() {
         })
       }
       $('.pl-sample-card').not('#pl-sample-card').show();
-      if ( ($('.pl-sample-card').length - 1) % 3 == 2){
+      if (($('.pl-sample-card').length - 1) % 3 == 2) {
         $('.pl-sample-card').last().addClass('right-margin-auto');
       }
     }
@@ -95,6 +95,7 @@ function getDate() {
     getPlaylist();
     $('.month-chips').removeClass('active');
     $('#pl-month-' + selectedMonth).addClass('active');
+    $("#year-dropdown").val(selectedYear).change();
   }
   // Send request
   request.send();
@@ -170,14 +171,15 @@ function searchPlaylist() {
           cardContainer.appendChild(card);
         })
         $('.pl-sample-card2').not('#pl-sample-card2').show();
+        if (($('.pl-sample-card2').length - 1) % 3 == 2) {
+          $('.pl-sample-card2').last().addClass('right-margin-auto');
+        }
       }
     }
     else {
       $('.pl-loading-spinner').removeClass('no-display-2');
     }
   }
-
-
 
   // Send request
   request.send();
@@ -225,6 +227,10 @@ function getMorePlaylist2(moreURL) {
         cardContainer.appendChild(card);
       })
       $('.pl-sample-card2').not('#pl-sample-card2').show();
+      $('.pl-sample-card2').removeClass('right-margin-auto');
+      if (($('.pl-sample-card2').length - 1) % 3 == 2) {
+        $('.pl-sample-card2').last().addClass('right-margin-auto');
+      }
     }
   }
 
