@@ -331,13 +331,21 @@ $(document).ready(function () {
     if (e.which == 13) {
       //search is empty
       if (!$(this).val()) {
-        $('.pl-clear-search').hide();
-        $('.pl-section-default').show();
-        $('#search-result-wrapper').hide();
-        $('#search-trigger-mobile').removeClass('no-display');
-        $('#search-field-wrapper').addClass('no-display');
-        $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
-        $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
+        if ($(window).width() < 479) {
+          $('#search-field-wrapper').toggleClass('no-display');
+          $('#search-trigger-mobile').toggleClass('no-display');
+          $('#pl-fm-logo').toggleClass('no-display');
+          $('.back-arrow-pl').toggleClass('no-display');
+        }
+        else {
+          $('.pl-clear-search').hide();
+          $('.pl-section-default').show();
+          $('#search-result-wrapper').hide();
+          $('#search-trigger-mobile').removeClass('no-display');
+          $('#search-field-wrapper').addClass('no-display');
+          $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
+          $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
+        }
       }
       //search has value
       else {
@@ -360,13 +368,21 @@ $(document).ready(function () {
 
   $('#pl-search').focusout(function () {
     if (!$(this).val()) {
-      $('.pl-clear-search').hide();
-      $('.pl-section-default').show();
-      $('#search-result-wrapper').hide();
-      $('#search-field-wrapper').addClass('no-display');
-      $('#search-trigger-mobile').removeClass('no-display');
-      $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
-      $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
+      if ($(window).width() < 479) {
+        $('#search-field-wrapper').toggleClass('no-display');
+        $('#search-trigger-mobile').toggleClass('no-display');
+        $('#pl-fm-logo').toggleClass('no-display');
+        $('.back-arrow-pl').toggleClass('no-display');
+      }
+      else {
+        $('.pl-clear-search').hide();
+        $('.pl-section-default').show();
+        $('#search-result-wrapper').hide();
+        $('#search-trigger-mobile').removeClass('no-display');
+        $('#search-field-wrapper').addClass('no-display');
+        $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
+        $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
+      }
     }
   });
 
