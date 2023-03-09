@@ -59,6 +59,9 @@ function getPlaylist() {
         })
       }
       $('.pl-sample-card').not('#pl-sample-card').show();
+      if ( ($('.pl-sample-card').length - 1) % 3 == 2){
+        $('.pl-sample-card').last().addClass('right-margin-auto');
+      }
     }
     else {
       $('.pl-loading-spinner').removeClass('no-display-2');
