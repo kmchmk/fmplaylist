@@ -335,8 +335,8 @@ $(document).ready(function () {
           $('.pl-section-default').show();
           $('#search-result-wrapper').hide();
           $('#search-field-wrapper').removeClass('no-display').addClass('no-display');
-          $('#search-trigger-mobile').toggleClass('no-display');
-          $('#pl-fm-logo').toggleClass('no-display');
+          $('#search-trigger-mobile').removeClass('no-display');
+          $('#pl-fm-logo').removeClass('no-display');
           $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
           $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
         }
@@ -375,8 +375,8 @@ $(document).ready(function () {
         $('.pl-section-default').show();
         $('#search-result-wrapper').hide();
         $('#search-field-wrapper').removeClass('no-display').addClass('no-display');
-        $('#search-trigger-mobile').toggleClass('no-display');
-        $('#pl-fm-logo').toggleClass('no-display');
+        $('#search-trigger-mobile').removeClass('no-display');
+        $('#pl-fm-logo').removeClass('no-display');
         $('.back-arrow-pl').removeClass('no-display').addClass('no-display');
         $('.back-arrow-pl-2').removeClass('no-display').addClass('no-display');
       }
