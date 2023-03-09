@@ -60,7 +60,7 @@ function getPlaylist() {
       }
       $('.pl-sample-card').not('#pl-sample-card').show();
       if (($('.pl-sample-card').length - 1) % 3 == 2) {
-        $('.pl-sample-card').last().addClass('right-margin-auto');
+        $('.pl-sample-card').last().clone().hide().appendTo("#playlist-wrapper");
       }
     }
     else {
@@ -91,8 +91,6 @@ function getDate() {
         }
       }
     }
-    apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
-    getPlaylist();
     $('.month-chips').removeClass('active');
     $('#pl-month-' + selectedMonth).addClass('active');
     $("#year-dropdown").val(selectedYear).change();
@@ -172,7 +170,7 @@ function searchPlaylist() {
         })
         $('.pl-sample-card2').not('#pl-sample-card2').show();
         if (($('.pl-sample-card2').length - 1) % 3 == 2) {
-          $('.pl-sample-card2').last().addClass('right-margin-auto');
+          $('.pl-sample-card2').last().clone().hide().appendTo("#playlist-wrapper2");
         }
       }
     }
@@ -227,9 +225,8 @@ function getMorePlaylist2(moreURL) {
         cardContainer.appendChild(card);
       })
       $('.pl-sample-card2').not('#pl-sample-card2').show();
-      $('.pl-sample-card2').removeClass('right-margin-auto');
       if (($('.pl-sample-card2').length - 1) % 3 == 2) {
-        $('.pl-sample-card2').last().addClass('right-margin-auto');
+        $('.pl-sample-card2').last().clone().hide().appendTo("#playlist-wrapper2");
       }
     }
   }
