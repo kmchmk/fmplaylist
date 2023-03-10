@@ -92,7 +92,7 @@ function getDate() {
       }
     }
     $('.month-chips').removeClass('active');
-    $('#pl-month-' + selectedMonth).addClass('active');
+    $('#pl-month-' + 12).addClass('active');
     if ($(window).width() < 992) {
       $('.pl-chips-wrapper').animate({scrollLeft: $('.month-chips.active').position().left - $(window).width() / 2 - 36}, 500);
     }
