@@ -92,7 +92,7 @@ function getDate() {
       }
     }
     $('.month-chips').removeClass('active');
-    $('#pl-month-' + 12).addClass('active');
+    $('#pl-month-' + selectedMonth).addClass('active');
     if ($(window).width() < 992) {
       $('.pl-chips-wrapper').animate({scrollLeft: $('.month-chips.active').position().left - $(window).width() / 2 - 36}, 500);
     }
@@ -238,13 +238,6 @@ function getMorePlaylist2(moreURL) {
 }
 
 $(document).ready(function () {
-  //TEST
-  $('#test-chips-99').on('click', function () {
-    console.log($('.month-chips.active').position().left)
-  });
-  //TEST
-
-
   $('#pl-empty-state').hide();
   $('#pl-sample-card').hide();
   $('#load-more-wrapper').hide();
