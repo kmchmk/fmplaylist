@@ -4,6 +4,17 @@ var selectedYear = dateFirst.getFullYear();
 var apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
 var apiToken = 'patrmhhyrGhfX1lBu.565c299d1b736dc23b667dcf26d072185cf8236b255051109e767040c612ecce';
 
+//in viewport function
+$.fn.isInViewport = function() {
+  var elementTop = $(this).offset().top;
+  var elementBottom = elementTop + $(this).outerHeight();
+
+  var viewportTop = $(window).scrollTop();
+  var viewportBottom = viewportTop + $(window).height();
+
+  return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
 //for search
 var searchKeyword = '';
 var offset2 = '';
@@ -93,7 +104,7 @@ function getDate() {
     }
     $('.month-chips').removeClass('active');
     $('#pl-month-' + selectedMonth).addClass('active');
-    if ($(window).width() < 992) {
+    if ( ($(window).width() < 992) && (!$('.month-chips.active').isInViewport()) ) {
       $('.pl-chips-wrapper').animate({scrollLeft: $('.month-chips.active').position().left}, 500);
     }
     $("#year-dropdown").val(selectedYear).change();
