@@ -247,6 +247,7 @@ $(document).ready(function () {
   $('#search-result-wrapper').hide();
   $('#pl-sample-card2').hide();
   $('#load-more-wrapper2').hide();
+  $('#search-result-wrapper').removeClass('no-display-2');
 
   getDate();
 
