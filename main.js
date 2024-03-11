@@ -94,7 +94,7 @@ function getDate() {
     $('.month-chips').removeClass('active');
     $('#pl-month-' + selectedMonth).addClass('active');
     if ($(window).width() < 992) {
-      $('.pl-chips-wrapper').animate({scrollLeft: $('.month-chips.active').position().left - $(window).width() / 2 - 36}, 500);
+      $('.pl-chips-wrapper').animate({ scrollLeft: $('.month-chips.active').position().left - $(window).width() / 2 - 36 }, 500);
     }
     $("#year-dropdown").val(selectedYear).change();
   }
@@ -144,7 +144,7 @@ function searchPlaylist() {
       $('.pl-loading-spinner').removeClass('no-display-2').addClass('no-display-2');
       $('.pl-section-default').removeClass('no-display-2');
       if (arr.length === 0) {
-        
+
       }
       else {
         // Map a variable called cardContainer to the Webflow element called "Cards-Container"
@@ -304,15 +304,7 @@ $(document).ready(function () {
     $('.pl-loading-spinner').removeClass('no-display-2');
     $('#playlist-wrapper').children().not('#pl-sample-card').remove();
 
-    if ($(this).val() == '2021') {
-      selectedYear = 2021;
-    }
-    else if ($(this).val() == '2022') {
-      selectedYear = 2022;
-    }
-    else if ($(this).val() == '2023') {
-      selectedYear = 2023;
-    }
+    selectedYear = parseInt($(this).val()) || 2021;
 
     apiURL = 'https://api.airtable.com/v0/appapOlGrcy5YNJ7A/videos?filterByFormula=AND(MONTH(%7BsubmittedDate%7D)%3D' + selectedMonth + '%2C+YEAR(%7BsubmittedDate%7D)%3D' + selectedYear + ')&maxRecords=100&pageSize=21&sort%5B0%5D%5Bfield%5D=submittedDate&sort%5B0%5D%5Bdirection%5D=desc&view=FM+Playlist';
     getPlaylist();
